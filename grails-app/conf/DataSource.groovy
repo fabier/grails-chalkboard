@@ -5,7 +5,7 @@ dataSource {
     url = "jdbc:postgresql://localhost:5432/chalkboard"
     dialect = org.hibernate.dialect.PostgreSQL9Dialect
     username = "dev"
-    password = ""
+    password = "dev"
 }
 
 hibernate {
@@ -31,7 +31,7 @@ environments {
             driverClassName = "org.postgresql.Driver"
             url = "jdbc:postgresql://localhost:5432/chalkboard"
             username = "chalkboard"
-            password = ""
+            password = "K40rc40Mvg261UykOr"
         }
     }
 }
