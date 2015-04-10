@@ -1,0 +1,177 @@
+@import "common-mixins";
+
+@bgDefault      : rgba(255, 255, 255, 0.4);
+@bgHighlight    : rgba(255, 255, 255, 0.4);
+@colDefault     : #000000;
+@colHighlight   : #000000;
+@dropDown       : true;
+.ddm() when (@dropDown) {
+  > .dropdown-menu {
+    background-color: @bgDefault;
+    > li > a {
+      color: @colDefault;
+      &:hover, &:focus {
+        color: @colHighlight;
+        background-color: @bgHighlight;
+      }
+    }
+    .divider {
+      background-color: @bgHighlight;
+    }
+  }
+}
+
+.navbar-default {
+  background-color: @bgDefault;
+  border-color: @bgHighlight;
+  .navbar-brand {
+    color: @colDefault;
+    &:hover, &:focus {
+      color: @colHighlight;
+    }
+  }
+  .navbar-text {
+    color: @colDefault;
+  }
+  .navbar-nav {
+    > li {
+      > a {
+        color: @colDefault;
+        &:hover, &:focus {
+          color: @colHighlight;
+        }
+      }
+      .ddm
+    }
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: @colHighlight;
+        background-color: @bgHighlight;
+      }
+    }
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: @colHighlight;
+        background-color: @bgHighlight;
+      }
+    }
+  }
+  .navbar-toggle {
+    border-color: @bgHighlight;
+    &:hover, &:focus {
+      background-color: @bgHighlight;
+    }
+    .icon-bar {
+      background-color: @colDefault;
+    }
+  }
+  .navbar-collapse,
+  .navbar-form {
+    border-color: @colDefault;
+  }
+  .navbar-link {
+    color: @colDefault;
+    &:hover {
+      color: @colHighlight;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: @colDefault;
+      &:hover, &:focus {
+        color: @colHighlight;
+      }
+    }
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: @colHighlight;
+        background-color: @bgHighlight;
+      }
+    }
+  }
+}
+
+.navbar {
+  .box-shadow(0 0px 5px rgba(32, 32, 32, 0.6));
+}
+
+body {
+}
+
+.wrapper {
+  padding-bottom: 30px;
+}
+
+footer {
+  color: @colDefault;
+  width: 100%;
+  padding: 10px;
+  position: fixed;
+  background-color: @bgDefault;
+  display: block;
+  bottom: 0px;
+  .box-shadow(0 -1px 4px #ccc);
+  //.box-shadow(0 -1px 5px rgba(32, 32, 32, 0.6));
+  text-align: center;
+  margin-top: -50px;
+  height: 50px
+}
+
+.padding-top-20 {
+  padding-top: 20px;
+}
+
+.display-block {
+  display: block;
+}
+
+.noHover:hover, .noHover:focus {
+  text-decoration: none;
+}
+
+.transparent {
+  background: transparent;
+}
+
+.nopadding {
+  padding: 0px;
+}
+
+.margin-10 {
+  margin: 10px;
+}
+
+.margin-leftright-10 {
+  margin: 0 10px;
+}
+
+.margin-leftright-20 {
+  margin: 0 20px;
+}
+
+.margin-20 {
+  margin: 20px;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.padding-leftright-20 {
+  padding: 0 20px;
+}
+
+.padding-leftright-10 {
+  padding: 0 20px;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.dz-clickable {
+  cursor: hand;
+}

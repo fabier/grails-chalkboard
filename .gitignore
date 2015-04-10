@@ -19,7 +19,7 @@
 /logs
 
 # project release file
-/*.war
+*.war
 
 # plugin release files
 /*.zip
@@ -31,3 +31,13 @@
 
 # "temporary" build files
 /target
+
+# Fichiers IDEA
+/.idea
+
+# Tous les fichiers en cours d'édition
+/*~
+
+# Dossier wrapper
+/wrapper
+
