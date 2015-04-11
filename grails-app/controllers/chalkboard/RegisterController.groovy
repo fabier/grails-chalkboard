@@ -92,7 +92,7 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
             def UserRole = lookupUserRoleClass()
             def Role = lookupRoleClass()
             for (roleName in ['ROLE_USER']) {
-                UserRole.create user, Role.findByAuthority(roleName)x
+                UserRole.create user, Role.findByAuthority(roleName)
             }
             registrationCode.delete()
         }

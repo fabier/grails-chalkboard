@@ -8,9 +8,12 @@ class BootStrap {
         def adminRole = Role.findByAuthority('ROLE_ADMIN') ?: new Role(authority: "ROLE_ADMIN").save(failOnError: true, flush: true)
         def userRole = Role.findByAuthority('ROLE_USER') ?: new Role(authority: "ROLE_USER").save(failOnError: true, flush: true)
 
-        def adminUser = User.findByUsername('admin') ?: new User(username: 'admin', password: springSecurityService.encodePassword('5O2ntH7p40Xl18JOqw'), email: "noreply@chaklbapp.com", enabled: true).save(failOnError: true, flush: true)
+        def adminUser = User.findByUsername('admin') ?: new User(username: 'admin', password: '5O2ntH7p40Xl18JOqw', email: "noreply@chalkbapp.com", enabled: true).save(failOnError: true, flush: true)
         if (!UserRole.findByUserAndRole(adminUser, adminRole)) {
             UserRole.create adminUser, adminRole, true
+        }
+        if (!UserRole.findByUserAndRole(adminUser, userRole)) {
+            UserRole.create adminUser, userRole, true
         }
 
         Country southAfrica = findOrSaveFlushCountry("South Africa")

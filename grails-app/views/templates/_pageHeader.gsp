@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-sm-2">
+    <div class="col-sm-2 text-center">
         <g:link uri="/">
             <asset:image src="chalkboard.png"/>
         </g:link>

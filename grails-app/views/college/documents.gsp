@@ -20,7 +20,7 @@
             <g:render template="/templates/lateralMenu" model="[college: college]"/>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-6 padding-leftright-20">
             <g:if test="${documents.isEmpty()}">
                 <div class="alert alert-info">
                     Pas de documents à ce jour pour ${college.name}.

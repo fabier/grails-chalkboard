@@ -65,6 +65,13 @@
                         </g:remoteLink>
                     </li>
                 </sec:ifLoggedIn>
+                <sec:ifAllGranted roles="ROLE_ADMIN">
+                    <li class="${controllerName == 'user' || controllerName == 'role' || controllerName == 'admin' ? "active" : ""}">
+                        <g:link controller="admin">
+                            Admin
+                        </g:link>
+                    </li>
+                </sec:ifAllGranted>
                 <li class="${controllerName == 'college' || controllerName == 'login' || controllerName == 'register' ? "active" : ""}">
                     <g:link controller="college">
                         <sec:ifLoggedIn>
