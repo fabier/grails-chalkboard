@@ -21,6 +21,9 @@
         </div>
 
         <div class="col-sm-6 padding-leftright-20">
+
+            <g:render template="/templates/flashMessage"/>
+
             <g:if test="${documents.isEmpty()}">
                 <div class="alert alert-info">
                     Pas de documents à ce jour pour ${college.name}.

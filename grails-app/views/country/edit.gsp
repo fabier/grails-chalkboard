@@ -1,8 +1,7 @@
 <html>
-
 <head>
     <meta name='layout' content='main'/>
-    <title>Role</title>
+    <title>Countries</title>
 </head>
 
 <body>
@@ -11,7 +10,7 @@
     <g:render template="/templates/pageHeader">
         ADMINISTRATION
         <br/>
-        ROLES
+        COUNTRIES
     </g:render>
 
     <div class="row">
@@ -25,21 +24,19 @@
                 <g:render template="/templates/flashMessage"/>
 
                 <div class="alert alert-danger">
-                    Attention, éditer un role peut couper les droits à l'ensemble des utilisateurs, y compris vous même !
-                    <br>
-                    Soyez absolument sûrs de ce que vous faites avant de modifier un rôle !
+                    Attention, éditer un pays est dangereux, ne faites pas de changement sans être absolument sûrs de ce que vous souhaitez faire.
                 </div>
 
-                <g:form action='update' class="form-horizontal" id="${role.id}">
-                    <g:hiddenField name="id" value="${role?.id}"/>
-                    <g:hiddenField name="version" value="${role?.version}"/>
+                <g:form action="update" id="${country?.id}" name='collegeEditForm' class="button-style form-horizontal">
+                    <g:hiddenField name="id" value="${country?.id}"/>
+                    <g:hiddenField name="version" value="${country?.version}"/>
 
                     <div class="form-group">
-                        <label for="authority" class="col-sm-2 control-label">Role</label>
+                        <label for="name" class="col-sm-2 control-label">Name</label>
 
                         <div class="col-sm-8">
-                            <input class="form-control" id="authority" name="authority" placeholder="Name"
-                                   value="${role.authority ?: ""}"/>
+                            <input class="form-control" id="name" name="name" placeholder="Name"
+                                   value="${country?.name ?: ""}"/>
                         </div>
 
                         <div class="col-sm-2">
@@ -53,6 +50,13 @@
         </div>
     </div>
 </div>
+
+%{--<g:if test='${canRunAs}'>--}%
+%{--<form name='runAsForm' action='${request.contextPath}/j_spring_security_switch_user' method='POST'>--}%
+%{--<g:hiddenField name='j_username' value="${user.username}"/>--}%
+%{--<input type='submit' class='s2ui_hidden_button'/>--}%
+%{--</form>--}%
+%{--</g:if>--}%
 
 </body>
 </html>

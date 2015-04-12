@@ -2,7 +2,7 @@
 
 <head>
     <meta name='layout' content='main'/>
-    <title>Users</title>
+    <title>Universities</title>
 </head>
 
 <body>
@@ -11,7 +11,7 @@
     <g:render template="/templates/pageHeader">
         ADMINISTRATION
         <br/>
-        USERS
+        UNIVERSITIES
     </g:render>
 
     <div class="row">
@@ -25,13 +25,13 @@
                 <g:render template="/templates/flashMessage"/>
 
                 <div class="col-sm-6">
-                    <g:form action='userSearch' name='userSearchForm' class="form-horizontal">
+                    <g:form action='collegeSearch' name='collegeSearchForm' class="form-horizontal">
                         <div class="form-group">
-                            <label for="username" class="col-sm-2 control-label">Username</label>
+                            <label for="name" class="col-sm-2 control-label">Name</label>
 
                             <div class="col-sm-8">
-                                <input class="form-control" id="username" name="username" placeholder="Search"
-                                       value="${params.username ?: ""}"/>
+                                <input class="form-control" id="name" name="name" placeholder="Search"
+                                       value="${params.name ?: ""}"/>
                             </div>
 
                             <div class="col-sm-2">
@@ -41,6 +41,13 @@
                             </div>
                         </div>
                     </g:form>
+                </div>
+
+                <div class="col-sm-6">
+                    <g:link controller="college" action="create" class="btn btn-success pull-right">
+                        <i class="glyphicon glyphicon-plus-sign"></i>
+                        Create university
+                    </g:link>
                 </div>
             </div>
 
@@ -52,41 +59,25 @@
                             <table class="table table-striped small">
                                 <thead>
                                 <tr>
-                                    <th class="col-sm-3">
-                                        Username
+                                    <th class="col-sm-8">
+                                        Name
                                     </th>
                                     <th class="col-sm-4">
-                                        Email
-                                    </th>
-                                    <th class="col-sm-3">
-                                        University
-                                    </th>
-                                    <th class="col-sm-2">
-                                        Enabled
+                                        Country
                                     </th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <g:each in="${results}" var="user">
+                                <g:each in="${results}" var="college">
                                     <tr>
                                         <td>
-                                            <g:link action="edit" id="${user.id}">
-                                                ${fieldValue(bean: user, field: "username")}
+                                            <g:link action="edit" id="${college.id}">
+                                                ${fieldValue(bean: college, field: "name")}
                                             </g:link>
                                         </td>
                                         <td>
-                                            <g:link action="edit" id="${user.id}">
-                                                ${fieldValue(bean: user, field: "email")}
-                                            </g:link>
-                                        </td>
-                                        <td>
-                                            <g:link action="edit" id="${user.id}">
-                                                ${fieldValue(bean: user, field: "colleges")}
-                                            </g:link>
-                                        </td>
-                                        <td>
-                                            <g:link action="edit" id="${user.id}">
-                                                <g:formatBoolean boolean="${user.enabled}"/>
+                                            <g:link action="edit" id="${college.id}">
+                                                ${fieldValue(bean: college?.country, field: "name")}
                                             </g:link>
                                         </td>
                                     </tr>
@@ -109,19 +100,5 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $("#username").focus().autocomplete({
-            minLength: 3,
-            cache: false,
-            source: "${createLink(action: 'ajaxUserSearch')}"
-        });
-    });
-
-    <s2ui:initCheckboxes/>
-
-</script>
-
 </body>
 </html>

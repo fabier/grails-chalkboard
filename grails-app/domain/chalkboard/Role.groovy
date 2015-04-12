@@ -2,16 +2,20 @@ package chalkboard
 
 class Role {
 
-	String authority
+    String authority
 
-	Date lastUpdated
-	Date dateCreated
+    Date lastUpdated
+    Date dateCreated
 
-	static mapping = {
-		cache true
-	}
+    transient users
 
-	static constraints = {
-		authority blank: false, unique: true
-	}
+    static transients = ['users']
+
+    static mapping = {
+        cache true
+    }
+
+    static constraints = {
+        authority blank: false, unique: true
+    }
 }

@@ -36,20 +36,17 @@
         </div>
 
         <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav pull-right spinnaker">
+            <ul class="nav navbar-nav spinnaker">
                 <li class="${controllerName == 'common' && actionName == "index" ? "active" : ""}">
                     <g:link uri="/">
                         Home
                     </g:link>
                 </li>
+            </ul>
+            <ul class="nav navbar-nav pull-right spinnaker">
                 <li class="${controllerName == 'common' && actionName == "about" ? "active" : ""}">
                     <g:link controller="common" action="about">
                         About
-                    </g:link>
-                </li>
-                <li class="${controllerName == 'common' && actionName == "subscribe" ? "active" : ""}">
-                    <g:link controller="common" action="subscribe">
-                        Subscribe
                     </g:link>
                 </li>
                 <li class="${controllerName == 'common' && actionName == "contact" ? "active" : ""}">
@@ -58,30 +55,38 @@
                     </g:link>
                 </li>
                 <sec:ifLoggedIn>
-                    <li>
-                        <g:remoteLink controller="logout" method="post" asynchronous="false"
-                                      onSuccess="location.href=${createLink(uri: "/")}">
-                            Logout
-                        </g:remoteLink>
+                    <li class="dropdown ${controllerName in ['college', 'user', 'role', 'admin'] ? "active" : ""}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false">Mon compte <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <g:link controller="college">
+                                    Mon compte
+                                </g:link>
+                            </li>
+                            <sec:ifAllGranted roles="ROLE_ADMIN">
+                                <li>
+                                    <g:link controller="admin">
+                                        Admin
+                                    </g:link>
+                                </li>
+                            </sec:ifAllGranted>
+                            <li>
+                                <g:remoteLink controller="logout" method="post" asynchronous="false"
+                                              onSuccess="location.href=${createLink(uri: "/")}">
+                                    Logout
+                                </g:remoteLink>
+                            </li>
+                        </ul>
                     </li>
                 </sec:ifLoggedIn>
-                <sec:ifAllGranted roles="ROLE_ADMIN">
-                    <li class="${controllerName == 'user' || controllerName == 'role' || controllerName == 'admin' ? "active" : ""}">
-                        <g:link controller="admin">
-                            Admin
+                <sec:ifNotLoggedIn>
+                    <li class="${controllerName in ['login', 'register'] ? "active" : ""}">
+                        <g:link controller="college">
+                            Connexion
                         </g:link>
                     </li>
-                </sec:ifAllGranted>
-                <li class="${controllerName == 'college' || controllerName == 'login' || controllerName == 'register' ? "active" : ""}">
-                    <g:link controller="college">
-                        <sec:ifLoggedIn>
-                            Mon compte
-                        </sec:ifLoggedIn>
-                        <sec:ifNotLoggedIn>
-                            Connexion
-                        </sec:ifNotLoggedIn>
-                    </g:link>
-                </li>
+                </sec:ifNotLoggedIn>
             </ul>
         </div>
     </div>

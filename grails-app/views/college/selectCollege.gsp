@@ -20,15 +20,16 @@
         </div>
 
         <div class="col-sm-6">
+
+            <g:render template="/templates/flashMessage"/>
+
             <div class="panel panel-default">
             <div class="panel-body">
                 <g:form action="updateCollege" role="form">
                     <div class="form-group">
                         <label for="college">College</label>
                         <g:select class="form-control" name="college" from="${colleges}" optionKey="id"
-                                  optionValue="name">
-
-                        </g:select>
+                                  optionValue="name"/>
                     </div>
 
 

@@ -1,8 +1,7 @@
 <html>
-
 <head>
     <meta name='layout' content='main'/>
-    <title>Role</title>
+    <title>Universities</title>
 </head>
 
 <body>
@@ -11,7 +10,7 @@
     <g:render template="/templates/pageHeader">
         ADMINISTRATION
         <br/>
-        ROLES
+        UNIVERSITIES
     </g:render>
 
     <div class="row">
@@ -25,26 +24,32 @@
                 <g:render template="/templates/flashMessage"/>
 
                 <div class="alert alert-danger">
-                    Attention, éditer un role peut couper les droits à l'ensemble des utilisateurs, y compris vous même !
-                    <br>
-                    Soyez absolument sûrs de ce que vous faites avant de modifier un rôle !
+                    Attention, éditer une université est dangereux, faites attention à toute modification apportée.
                 </div>
 
-                <g:form action='update' class="form-horizontal" id="${role.id}">
-                    <g:hiddenField name="id" value="${role?.id}"/>
-                    <g:hiddenField name="version" value="${role?.version}"/>
-
+                <g:form action="save" name='collegeSaveForm' class="button-style form-horizontal">
                     <div class="form-group">
-                        <label for="authority" class="col-sm-2 control-label">Role</label>
+                        <label for="name" class="col-sm-2 control-label">Name</label>
 
                         <div class="col-sm-8">
-                            <input class="form-control" id="authority" name="authority" placeholder="Name"
-                                   value="${role.authority ?: ""}"/>
+                            <input class="form-control" id="name" name="name" placeholder="Name"
+                                   value=""/>
                         </div>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="country" class="col-sm-2 control-label">Country</label>
+
+                        <div class="col-sm-8">
+                            <g:select name="country" from="${countries}" optionKey="id" optionValue="name"
+                                      class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <div class="col-sm-2">
                             <button type="submit" class="btn btn-primary">
-                                Update
+                                Save
                             </button>
                         </div>
                     </div>
@@ -53,6 +58,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>

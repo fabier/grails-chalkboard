@@ -96,8 +96,12 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
     }
 
     def search() {
-        render view: 'search', model: [results   : User.all,
-                                       totalCount: User.count,
+        def users = User.listOrderByUsername()
+        users.each {
+            it.colleges = CollegeUser.findAllByUser(it, [max: 5])*.college.name.join(", ")
+        }
+        render view: 'search', model: [results   : users,
+                                       totalCount: users.size(),
                                        username  : params.username,
                                        searched  : true]
     }
@@ -156,6 +160,10 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
         for (name in ['username', 'enabled', 'accountExpired', 'accountLocked',
                       'passwordExpired', 'sort', 'order']) {
             model[name] = params[name]
+        }
+
+        results.each {
+            it.colleges = CollegeUser.findAllByUser(it, [max: 5])*.college.name.join(", ")
         }
 
         render view: 'search', model: model

@@ -1,5 +1,4 @@
 <html>
-<%@ page import="grails.util.Holders" %>
 <head>
     <meta name='layout' content='main'/>
     <title>User</title>
@@ -21,6 +20,9 @@
 
         <div class="col-sm-6 padding-leftright-20">
             <div class="row">
+
+                <g:render template="/templates/flashMessage"/>
+
                 <div class="alert alert-danger">
                     Attention, éditer un utilisateur est dangereux, soyez attentifs aux modifications apportées.
                 </div>

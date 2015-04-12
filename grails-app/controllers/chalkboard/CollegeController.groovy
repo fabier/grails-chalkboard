@@ -72,4 +72,60 @@ class CollegeController {
         }
         render "OK"
     }
+
+    @Secured("hasRole('ROLE_ADMIN')")
+    def search() {
+        def colleges = College.listOrderByName()
+        render view: 'search', model: [results   : colleges,
+                                       totalCount: colleges.size(),
+                                       name      : params.name,
+                                       searched  : true]
+    }
+
+    @Secured("hasRole('ROLE_ADMIN')")
+    def edit(long id) {
+        College college = College.get(id)
+        render view: "edit", model: [college: college, countries: Country.listOrderByName()]
+    }
+
+    @Secured("hasRole('ROLE_ADMIN')")
+    def update(long id) {
+        College college = College.get(id)
+        bindData(college, params)
+        if (college.validate()) {
+            college.save()
+            flash.message = "Update successful"
+            redirect action: "search"
+        } else {
+            flash.error = "Impossible to update college"
+            redirect action: "edit", id: id
+        }
+    }
+
+    @Secured("hasRole('ROLE_ADMIN')")
+    def create() {
+        render view: "create", model: [countries: Country.listOrderByName()]
+    }
+
+    @Secured("hasRole('ROLE_ADMIN')")
+    def save() {
+        User user = springSecurityService.currentUser
+        College college = new College(name: params.name, creator: user, country: Country.get(params.country))
+        if (college.validate()) {
+            college.save()
+            flash.message = "College creation successful"
+            redirect action: "edit", id: college.id
+        } else {
+            flash.error = "Error creating college"
+            redirect action: "create"
+        }
+    }
+
+    @Secured("hasRole('ROLE_ADMIN')")
+    def delete(long id) {
+        College college = College.get(id)
+        college.delete()
+        flash.message = "University deleted"
+        redirect action: "search"
+    }
 }

@@ -19,24 +19,29 @@
             <g:render template="/templates/lateralMenuAdmin"/>
         </div>
 
-        <div class="col-sm-6 padding-leftright-20">
+        <div class="col-sm-10 padding-leftright-20">
             <div class="row">
-                <g:form action='roleSearch' name='roleSearchForm' class="form-horizontal">
-                    <div class="form-group">
-                        <label for="authority" class="col-sm-2 control-label">Role</label>
 
-                        <div class="col-sm-8">
-                            <input class="form-control" id="authority" name="authority" placeholder="Search"
-                                   value="${params.authority ?: ""}"/>
-                        </div>
+                <g:render template="/templates/flashMessage"/>
 
-                        <div class="col-sm-2">
-                            <button type="submit" class="btn btn-primary">
-                                Search
-                            </button>
+                <div class="col-sm-6">
+                    <g:form action='roleSearch' name='roleSearchForm' class="form-horizontal">
+                        <div class="form-group">
+                            <label for="authority" class="col-sm-2 control-label">Role</label>
+
+                            <div class="col-sm-8">
+                                <input class="form-control" id="authority" name="authority" placeholder="Search"
+                                       value="${params.authority ?: ""}"/>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <button type="submit" class="btn btn-primary">
+                                    Search
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </g:form>
+                    </g:form>
+                </div>
             </div>
 
             <g:if test="${searched}">
@@ -50,6 +55,9 @@
                                     <th class="col-sm-6">
                                         Authority
                                     </th>
+                                    <th class="col-sm-6">
+                                        Users
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -58,6 +66,11 @@
                                         <td>
                                             <g:link action="edit" id="${role.id}">
                                                 ${fieldValue(bean: role, field: "authority")}
+                                            </g:link>
+                                        </td>
+                                        <td>
+                                            <g:link action="edit" id="${role.id}">
+                                                ${fieldValue(bean: role, field: "users")}
                                             </g:link>
                                         </td>
                                     </tr>

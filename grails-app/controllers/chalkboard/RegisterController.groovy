@@ -1,6 +1,5 @@
 package chalkboard
 
-import grails.plugin.springsecurity.ReflectionUtils
 import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.authentication.dao.NullSaltSource

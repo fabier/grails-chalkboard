@@ -21,6 +21,9 @@
         </div>
 
         <div class="col-sm-6">
+
+            <g:render template="/templates/flashMessage"/>
+
             <p>Accessing higher education remains a problem in most African countries, while many local universities offer all the classes you need.</p>
 
             <p>If you can’t go to the University of your dreams, Chalkboard brings it to you !</p>

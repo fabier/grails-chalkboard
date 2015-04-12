@@ -30,7 +30,7 @@ class RoleController extends grails.plugin.springsecurity.ui.RoleController {
         String upperAuthorityFieldName = GrailsNameUtils.getClassName(
                 SpringSecurityUtils.securityConfig.authority.nameField, null)
 
-        def role = params.name ? Role.findByAuthority(params.name):null
+        def role = params.name ? Role.findByAuthority(params.name) : null
         if (!role) role = Role.get(id)
         if (!role) return
 
@@ -79,8 +79,12 @@ class RoleController extends grails.plugin.springsecurity.ui.RoleController {
     }
 
     def search() {
-        render view: 'search', model: [results   : Role.all,
-                                       totalCount: Role.count,
+        def roles = Role.listOrderByAuthority()
+        roles.each {
+            it.users = UserRole.findAllByRole(it, [max: 5])*.user.username.join(", ")
+        }
+        render view: 'search', model: [results   : roles,
+                                       totalCount: roles.size(),
                                        authority : params.authority,
                                        searched  : true]
     }
@@ -105,6 +109,10 @@ class RoleController extends grails.plugin.springsecurity.ui.RoleController {
                         "FROM ${lookupRoleClassName()} r " +
                         "WHERE LOWER(r.${authorityField}) LIKE :name"
         int total = lookupRoleClass().executeQuery(hql, [name: "%${name.toLowerCase()}%"])[0]
+
+        roles.each {
+            it.users = UserRole.findAllByRole(it, [max: 5])*.user.username.join(", ")
+        }
 
         render view: 'search', model: [results   : roles,
                                        totalCount: total,
