@@ -19,9 +19,7 @@ class ChalkboardTagLib {
             throw new Exception("The attribute 'maxlength' must be greater than 3. Provided value: $maxLength")
         }
         if (bodyAsString.length() > maxLength) {
-            out << raw(/<abbr title="${bodyAsString}">${
-                bodyAsString[0..maxLength - (ELLIPSIS.size() + 1)]
-            }$ELLIPSIS<\/abbr>/)
+            out << raw(/<abbr title="${bodyAsString}">${bodyAsString[0..maxLength - (ELLIPSIS.size() + 1)]}$ELLIPSIS<\/abbr>/)
         } else {
             out << raw(bodyAsString)
         }

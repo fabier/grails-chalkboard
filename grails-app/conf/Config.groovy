@@ -146,6 +146,7 @@ grails.plugin.springsecurity.ui.password.validationRegex = '^.*(?=.*[a-zA-Z\\d])
 grails.plugin.springsecurity.ui.password.minLength = 4
 grails.plugin.springsecurity.ui.password.maxLength = 64
 grails.plugin.springsecurity.userLookup.usernamePropertyName = 'email'
+grails.plugin.springsecurity.logout.postOnly = false
 
 grails {
     plugin {
@@ -167,7 +168,7 @@ Merci de ne pas répondre à ce message automatique.
 '''
                     emailFrom = 'chalkboard <noreply@chalkapp.com>'
                     emailSubject = 'chalkboard - Création de compte'
-                    defaultRoleNames = ['USER']
+                    defaultRoleNames = ['ROLE_USER']
                     postRegisterUrl = null // use defaultTargetUrl if not set
                 }
 

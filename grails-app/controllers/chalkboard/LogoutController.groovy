@@ -20,7 +20,7 @@ import org.springframework.security.access.annotation.Secured
 import javax.servlet.http.HttpServletResponse
 
 @Secured('permitAll')
-class LogoutController {
+class LogoutController extends grails.plugin.springsecurity.LogoutController {
 
     /**
      * Index action. Redirects to the Spring security logout uri.

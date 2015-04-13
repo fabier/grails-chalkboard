@@ -72,10 +72,9 @@
                                 </li>
                             </sec:ifAllGranted>
                             <li>
-                                <g:remoteLink controller="logout" method="post" asynchronous="false"
-                                              onSuccess="location.href=${createLink(uri: "/")}">
+                                <g:link controller="logout" action="index">
                                     Logout
-                                </g:remoteLink>
+                                </g:link>
                             </li>
                         </ul>
                     </li>
