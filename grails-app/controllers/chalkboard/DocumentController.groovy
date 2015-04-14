@@ -18,4 +18,15 @@ class DocumentController {
             render status: 404
         }
     }
+
+    @Secured("hasRole('ROLE_ADMIN')")
+    def delete(long id) {
+        Document document = Document.get(id)
+        College college = College.get(params.collegeId)
+        CollegeDocument.findByCollegeAndDocument(college, document).delete()
+        if (CollegeDocument.findAllByDocument(document).isEmpty()) {
+            document.delete()
+        }
+        redirect controller: "college", action: "documents", id: params.collegeId
+    }
 }

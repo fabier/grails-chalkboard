@@ -35,8 +35,16 @@
                         <table class="table table-hover small">
                             <thead>
                             <tr>
-                                <th class="col-sm-10">Nom du fichier</th>
+                                <sec:ifAllGranted roles="ROLE_ADMIN">
+                                    <th class="col-sm-10">Nom du fichier</th>
+                                </sec:ifAllGranted>
+                                <sec:ifNotGranted roles="ROLE_ADMIN">
+                                    <th class="col-sm-8">Nom du fichier</th>
+                                </sec:ifNotGranted>
                                 <th class="col-sm-2">Download</th>
+                                <sec:ifAllGranted roles="ROLE_ADMIN">
+                                    <th class="col-sm-2">Supprimer</th>
+                                </sec:ifAllGranted>
                             </tr>
                             </thead>
                             <tbody>
@@ -54,6 +62,14 @@
                                             <i class="glyphicon glyphicon-download-alt"></i>
                                         </g:link>
                                     </td>
+                                    <sec:ifAllGranted roles="ROLE_ADMIN">
+                                        <td>
+                                            <g:link controller="document" action="delete" id="${document.id}"
+                                                    params="[collegeId: college.id]">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </g:link>
+                                        </td>
+                                    </sec:ifAllGranted>
                                 </tr>
                             </g:each>
                             </tbody>
