@@ -138,7 +138,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 ]
 
 
-grails.plugin.springsecurity.ui.register.postRegisterUrl = '/'
+grails.plugin.springsecurity.ui.register.postRegisterUrl = '/college'
 grails.plugin.springsecurity.ui.register.emailFrom = 'noreply@chalkbapp.com'
 grails.plugin.springsecurity.ui.register.emailSubject = 'chalkboard - Valider votre email'
 grails.plugin.springsecurity.ui.register.defaultRoleNames = ['ROLE_USER']
@@ -169,7 +169,7 @@ Merci de ne pas répondre à ce message automatique.
                     emailFrom = 'chalkboard <noreply@chalkapp.com>'
                     emailSubject = 'chalkboard - Création de compte'
                     defaultRoleNames = ['ROLE_USER']
-                    postRegisterUrl = null // use defaultTargetUrl if not set
+                    postRegisterUrl = '/college' // use defaultTargetUrl if not set
                 }
 
                 forgotPassword {
@@ -186,7 +186,7 @@ Merci de ne pas répondre à ce message automatique.
 '''
                     emailFrom = 'chalkboard <noreply@chalkbapp.com>'
                     emailSubject = 'chalkboard - Réinitialisation du mot de passe'
-                    postResetUrl = null // use defaultTargetUrl if not set
+                    postResetUrl = '/college' // use defaultTargetUrl if not set
                 }
             }
         }
